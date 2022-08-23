@@ -1,4 +1,4 @@
-# to-do-list-mern
+# to-do
 A To Do List built with the MERN stack.
 
 How to run the project:

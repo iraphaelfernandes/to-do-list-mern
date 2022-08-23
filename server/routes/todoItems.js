@@ -1,6 +1,6 @@
 
 const router = require('express').Router();
-//import todo model 
+
 const todoItemsModel = require('../models/todoItems');
 
 router.post('/api/item', async (req, res)=>{
@@ -51,4 +51,4 @@ router.delete('/api/item/:id', async (req, res)=>{
 
 
 
-     module.exports = router;
+module.exports = router;
