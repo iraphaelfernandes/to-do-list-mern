@@ -1,7 +1,6 @@
 
 const mongoose = require('mongoose');
 
-
 const TodoItemSchema = new mongoose.Schema({
      item:{
           type:String,
@@ -9,5 +8,7 @@ const TodoItemSchema = new mongoose.Schema({
      }
 })
 
-
 module.exports = mongoose.model('todo', TodoItemSchema);
+
+
+

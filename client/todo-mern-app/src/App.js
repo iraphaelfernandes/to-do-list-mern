@@ -1,3 +1,6 @@
+
+
+
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
@@ -23,7 +26,7 @@ function App() {
     }
   }
 
- 
+
   useEffect(()=>{
     const getItemsList = async () => {
       try{
@@ -84,7 +87,7 @@ function App() {
     <div className="App">
       <h1>OAB RJ - To Do </h1>
       <form className="form" onSubmit={e => addItem(e)}>
-        <input type="text" placeholder='Add Todo Item' onChange={e => {setItemText(e.target.value)} } value={itemText} />
+        <input type="text" placeholder='Add Item' onChange={e => {setItemText(e.target.value)} } value={itemText} />
         <button type="submit">Add</button>
       </form>
       <div className="todo-listItems">

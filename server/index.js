@@ -9,12 +9,10 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 5500;
 
-
 app.use(cors());
 
 
 const TodoItemRoute = require('./routes/todoItems');
-
 
 //Connecting to the DB
 mongoose.connect(process.env.DB_CONNECT)
@@ -24,7 +22,10 @@ mongoose.connect(process.env.DB_CONNECT)
 
 app.use('/', TodoItemRoute);
 
+//Connecting the server
+app.listen(PORT, ()=> console.log(`Server connected on port ${process.env.PORT}`) );
 
 
-//Connection with the server
-app.listen(PORT, ()=> console.log("Server connected") );
+
+
+
