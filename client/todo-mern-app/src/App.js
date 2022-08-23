@@ -3,6 +3,8 @@ import axios from 'axios';
 import './App.css';
 
 function App() {
+  
+  
   const [itemText, setItemText] = useState('');
   const [listItems, setListItems] = useState([]);
   const [isUpdating, setIsUpdating] = useState('');
@@ -38,20 +40,26 @@ function App() {
 
 
   const deleteItem = async (id) => {
+    
     try{
+      
       const res = await axios.delete(`http://localhost:5500/api/item/${id}`)
       const newListItems = listItems.filter(item=> item._id !== id);
       setListItems(newListItems);
       console.log("New list items", newListItems)
+      
     }catch(err){
+      
       console.log(err);
     }
   }
 
 
   const updateItem = async (e) => {
+    
     e.preventDefault()
     try{
+      
       const res = await axios.put(`http://localhost:5500/api/item/${isUpdating}`, {item: updateItemText})
       console.log(res.data)
       const updatedItemIndex = listItems.findIndex(item => item._id === isUpdating);
@@ -65,10 +73,12 @@ function App() {
   
   const renderUpdateForm = () => (
     <form className="update-form" onSubmit={(e)=>{updateItem(e)}} >
-      <input className="update-new-input" type="text" placeholder="New Item" onChange={e=>{setUpdateItemText(e.target.value)}} value={updateItemText} />
+      <input className="update-new-input" type="text" placeholder="Updating item" onChange={e=>{setUpdateItemText(e.target.value)}} value={updateItemText} />
       <button className="update-new-btn" type="submit">Update</button>
     </form>
   )
+  
+  
 
   return (
     <div className="App">
