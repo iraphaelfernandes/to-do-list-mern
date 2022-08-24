@@ -16,7 +16,7 @@ PUT http://localhost:5500/api/item/6304e349540e56a7a7c406e8
 Content-Type: application/json
 
 {
-"item": "This is the X todo item updated!!"
+"item": "Saltar"
 }
 
 ###

@@ -1,3 +1,4 @@
+
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
@@ -16,7 +17,7 @@ const TodoItemRoute = require('./routes/todoItems');
 
 //Connecting to the DB
 mongoose.connect(process.env.DB_CONNECT)
-.then(()=> console.log("Database connected"))
+.then(()=> console.log("Database connected!!!"))
 .catch(err => console.log(err))
 
 

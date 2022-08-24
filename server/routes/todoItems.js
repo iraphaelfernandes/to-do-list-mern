@@ -9,7 +9,7 @@ router.post('/api/item', async (req, res)=>{
           item: req.body.item
           })
           
-          const saveItem = await newItem.save()
+          const saveItem = await newItem.save() //save() mongoose
           res.status(200).json(saveItem);
      }catch(err){
           res.json(err);
@@ -24,7 +24,6 @@ router.get('/api/items', async (req, res)=>{
           res.json(err);
      }
 })
-
 
 
 router.put('/api/item/:id', async (req, res)=>{

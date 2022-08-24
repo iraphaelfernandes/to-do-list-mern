@@ -14,19 +14,6 @@ function App() {
   const [updateItemText, setUpdateItemText] = useState('');
 
 
-  const addItem = async (e) => {
-    e.preventDefault();
-    try{
-      const res = await axios.post('http://localhost:5500/api/item', {item: itemText})
-      console.log("From addItem ", res)
-      setListItems(prev => [...prev, res.data]);
-      setItemText('');
-    }catch(err){
-      console.log(err);
-    }
-  }
-
-
   useEffect(()=>{
     const getItemsList = async () => {
       try{
@@ -40,6 +27,21 @@ function App() {
     }
     getItemsList()
   },[]);
+
+  const addItem = async (e) => {
+    e.preventDefault();
+    try{
+      const res = await axios.post('http://localhost:5500/api/item', {item: itemText})
+      console.log("From addItem ", res)
+      setListItems(prev => [...prev, res.data]);
+      setItemText('');
+    }catch(err){
+      console.log(err);
+    }
+  }
+
+
+
 
 
   const deleteItem = async (id) => {
