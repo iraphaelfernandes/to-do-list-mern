@@ -24,7 +24,7 @@ function App() {
     }
     getItemsList()
 
-  }, []);
+  }, [listItems]);
   
   const addItem = async (e) => {
     e.preventDefault();
@@ -62,7 +62,7 @@ function App() {
       await axios.put(`http://localhost:5500/api/item/${item._id}`, {completed: !isChecked})
       setIsChecked(false)
       setIsLineThrough(current => current)
-      window.location.reload(false);
+      // window.location.reload(false);
     }
   
 
@@ -76,7 +76,7 @@ function App() {
       const updatedItem = listItems[updatedItemIndex].item = updateItemText;
       setUpdateItemText('');
       setIsUpdating('');
-      window.location.reload(false);
+      // window.location.reload(false);
     }catch(err){
       console.log(err);
     }
