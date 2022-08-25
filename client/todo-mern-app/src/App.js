@@ -24,7 +24,7 @@ function App() {
     }
     getItemsList()
 
-  },[]);
+  }, []);
   
   const addItem = async (e) => {
     e.preventDefault();
@@ -70,12 +70,13 @@ function App() {
     e.preventDefault()
     try{
       
-      const res = await axios.put(`http://localhost:5500/api/item/${isUpdating}`, {item: updateItemText})
+      const res = await axios.put(`http://localhost:5500/api/item/${isUpdating}`, {item: updateItemText, completed: false})
       console.log(res.data)
       const updatedItemIndex = listItems.findIndex(item => item._id === isUpdating);
       const updatedItem = listItems[updatedItemIndex].item = updateItemText;
       setUpdateItemText('');
       setIsUpdating('');
+      window.location.reload(false);
     }catch(err){
       console.log(err);
     }
@@ -88,8 +89,6 @@ function App() {
     </form>
   )
   
-  
-
   return (
     <div className="App">
       <h1>OAB RJ - To Do </h1>
