@@ -1,33 +1,31 @@
-
-
-
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
 
 function App() {
   
-  
   const [itemText, setItemText] = useState('');
   const [listItems, setListItems] = useState([]);
   const [isUpdating, setIsUpdating] = useState('');
   const [updateItemText, setUpdateItemText] = useState('');
-
+  const [isChecked, setIsChecked] = useState(false)
+  const [isLineThrough, setIsLineThrough] = useState(false)
 
   useEffect(()=>{
     const getItemsList = async () => {
       try{
         const res = await axios.get('http://localhost:5500/api/items')
         setListItems(res.data);
-        console.log(res.data)
-        console.log('render')
+        // console.log(res.data)
+        // console.log('render')
       }catch(err){
         console.log(err);
       }
     }
     getItemsList()
-  },[]);
 
+  },[]);
+  
   const addItem = async (e) => {
     e.preventDefault();
     try{
@@ -39,9 +37,6 @@ function App() {
       console.log(err);
     }
   }
-
-
-
 
 
   const deleteItem = async (id) => {
@@ -57,11 +52,21 @@ function App() {
       
       console.log(err);
     }
+    
   }
-
+  
+      
+    const changeChecked = async (item) => {
+      await setIsChecked(prev=> ({...prev, completed: !prev.completed}))
+      console.log(isChecked)
+      await axios.put(`http://localhost:5500/api/item/${item._id}`, {completed: !isChecked})
+      setIsChecked(false)
+      setIsLineThrough(current => current)
+      window.location.reload(false);
+    }
+  
 
   const updateItem = async (e) => {
-    
     e.preventDefault()
     try{
       
@@ -92,6 +97,7 @@ function App() {
         <input type="text" placeholder='Add Item' onChange={e => {setItemText(e.target.value)} } value={itemText} />
         <button type="submit">Add</button>
       </form>
+      
       <div className="todo-listItems">
         {
           listItems.map(item => (
@@ -100,7 +106,20 @@ function App() {
               isUpdating === item._id
               ? renderUpdateForm()
               : <>
-                  <p className="item-content">{item.item}</p>
+                    <input
+                      type="checkbox"
+                      id={item.completed === true ? "text-task-lined" : ""}
+                      onChange={
+                      () =>{
+                        changeChecked(item)
+                        setIsLineThrough(current => !current)
+                      }
+                    }/>
+                    
+                  <p
+                    id= {item.completed === true ? "text-task-lined": ""}
+                    className="item-content">
+                    {item.item}</p>
                   <button className="update-item" onClick={()=>{setIsUpdating(item._id)}}>Update</button>
                   <button className="delete-item" onClick={()=>{deleteItem(item._id)}}>Delete</button>
                 </>

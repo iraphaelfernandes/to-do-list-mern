@@ -5,6 +5,11 @@ const TodoItemSchema = new mongoose.Schema({
      item:{
           type:String,
           required: true
+     },
+          
+     completed: {
+          type: Boolean,
+          default: false
      }
 })
 
